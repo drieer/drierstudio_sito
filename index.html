@@ -3,36 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sito Ufficiale</title>
-    <!-- Importazione Font Bebas Neue e Inter da Google Fonts -->
+    <title>Drieer Studio</title>
+    <!-- Importazione Font Bebas Neue e Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Smoothing Scroll Engine (Lenis.js per 120 FPS smooth scroll) -->
+    <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
 
     <style>
-        /* RESET E SCORRIMENTO FLUIDO */
-        html {
-            scroll-behavior: smooth;
-        }
-
+        /* RESET E STILI DI BASE */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            /* Inibisce la selezione del testo per sicurezza */
             user-select: none;
             -webkit-user-select: none;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
+        html {
             background-color: #0b0b0c;
             color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            /* Rimuove lo scroll a scatti nativo */
             overflow-x: hidden;
-            line-height: 1.6;
         }
 
-        /* NAVBAR */
+        body {
+            line-height: 1.6;
+            background-color: #0b0b0c;
+        }
+
+        /* NAVBAR RESPONSIVE */
         nav {
             position: fixed;
             top: 0;
@@ -40,16 +43,25 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 50px;
+            padding: 18px 5%;
             background: rgba(11, 11, 12, 0.85);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
+        .logo-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 3px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 25px;
             list-style: none;
         }
 
@@ -67,18 +79,10 @@
             color: #ffffff;
         }
 
-        .logo-text {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.2rem;
-            letter-spacing: 3px;
-            color: #ffffff;
-            text-transform: uppercase;
-        }
-
         .nav-actions {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         .online-count {
@@ -118,20 +122,19 @@
 
         /* HERO SECTION */
         .hero {
-            position: relative;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 20px;
-            background: radial-gradient(circle at center, rgba(30, 30, 35, 0.5) 0%, rgba(11, 11, 12, 1) 100%);
+            padding: 120px 20px 60px 20px;
+            background: radial-gradient(circle at center, rgba(35, 35, 40, 0.4) 0%, rgba(11, 11, 12, 1) 100%);
         }
 
         .hero-title {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(3.5rem, 8vw, 7.5rem);
+            font-size: clamp(3.2rem, 7.5vw, 7rem);
             line-height: 0.95;
             letter-spacing: 2px;
             margin-bottom: 20px;
@@ -139,12 +142,12 @@
         }
 
         .hero-title span {
-            color: #a1a1aa;
+            color: #888888;
         }
 
         .hero-subtitle {
             max-width: 650px;
-            font-size: 1rem;
+            font-size: clamp(0.95rem, 1.5vw, 1.1rem);
             color: #a1a1aa;
             margin-bottom: 35px;
             font-weight: 300;
@@ -154,12 +157,13 @@
             display: flex;
             gap: 15px;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .btn-primary {
             background-color: #ffffff;
             color: #000000;
-            padding: 14px 32px;
+            padding: 14px 34px;
             border-radius: 50px;
             font-weight: 700;
             text-decoration: none;
@@ -175,7 +179,7 @@
         .btn-secondary {
             background-color: rgba(255, 255, 255, 0.08);
             color: #ffffff;
-            padding: 14px 32px;
+            padding: 14px 34px;
             border-radius: 50px;
             font-weight: 600;
             text-decoration: none;
@@ -189,19 +193,123 @@
             transform: translateY(-2px);
         }
 
-        /* SEZIONE CONTENUTO DI ESEMPIO */
-        .content-section {
-            min-height: 80vh;
-            padding: 100px 50px;
-            max-width: 1200px;
+        /* SEZIONE RECENSIONI (REVIEWS) */
+        .reviews-section {
+            padding: 100px 5%;
+            max-width: 1300px;
             margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
         }
 
         .section-title {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 3rem;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
+            font-size: clamp(2.5rem, 4vw, 4rem);
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            color: #a1a1aa;
+            font-size: 1rem;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 30px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .stars {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+        }
+
+        .review-text {
+            color: #d4d4d8;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #27272a;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .author-info h4 {
+            font-size: 0.95rem;
+            color: #ffffff;
+        }
+
+        .author-info p {
+            font-size: 0.8rem;
+            color: #a1a1aa;
+        }
+
+        /* MEDIA QUERIES (RESPONSIVE PER MOBILE E TABLET) */
+        @media (max-width: 900px) {
+            nav {
+                padding: 15px 4%;
+            }
+            .nav-links {
+                display: none; /* Nasconde i link secondari su schermi piccoli per pulizia */
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-actions .online-count {
+                display: none; /* Ottimizza spazio header su smartphone */
+            }
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+            .reviews-grid {
+                grid-template-columns: 1fr; /* 1 colonna singola su smartphone */
+            }
         }
     </style>
 </head>
@@ -209,71 +317,119 @@
 
     <!-- NAVBAR -->
     <nav>
-        <ul class="nav-links">
-            <li><a href="#shop">Shop</a></li>
-            <li><a href="#supporto">Supporto</a></li>
-            <li><a href="#business">Per Business</a></li>
-        </ul>
+        <div class="logo-text">DRIEER STUDIO</div>
 
-        <!-- L'intestazione del tuo logo/nome -->
-        <div class="logo-text">TUO BRAND</div>
+        <ul class="nav-links">
+            <li><a href="#progetto">Progetto</a></li>
+            <li><a href="#recensioni">Recensioni</a></li>
+            <li><a href="#supporto">Supporto</a></li>
+        </ul>
 
         <div class="nav-actions">
             <div class="online-count">
-                <span class="dot"></span> 0 Giocatori Online
+                <span class="dot"></span> 395 Online
             </div>
-            <a href="#" class="btn-header">Entra in città</a>
+            <a href="#" class="btn-header">Entra Ora</a>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
-    <section class="hero">
+    <section class="hero" id="progetto">
         <h1 class="hero-title">
-            DRIERSTUDIObr>
-            <span>E' QUI</span>
+            DRIERSTUDIO<br>
+            <span>STA QUI.</span>
         </h1>
         <p class="hero-subtitle">
-            Benvenuto! 
+            Piattaforma e community di alto livello. Esperienza immersiva, prestazioni fluide e componenti personalizzati.
         </p>
         <div class="hero-buttons">
-            <a href="#" class="btn-primary">Entra nel server</a>
-            <a href="#scopri" class="btn-secondary">Scopri di più</a>
+            <a href="#" class="btn-primary">Entra in città</a>
+            <a href="#recensioni" class="btn-secondary">Scopri di più</a>
         </div>
     </section>
 
-    <!-- SEZIONE SCOPRI DI PIÙ -->
-    <section id="scopri" class="content-section">
-        <h2 class="section-title">Informazioni sul Progetto</h2>
-        <p style="color: #a1a1aa;"></p>
+    <!-- SEZIONE RECENSIONI -->
+    <section class="reviews-section" id="recensioni">
+        <div class="section-header">
+            <h2 class="section-title">COSA DICONO DI NOI</h2>
+            <p class="section-subtitle">Le esperienze e le opinioni della nostra community</p>
+        </div>
+
+        <div class="reviews-grid">
+            <!-- Recensione 1 -->
+            <div class="review-card">
+                <div>
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Qualità incredibile e fluidità mai vista prima. Il supporto è sempre disponibile e la community fantastica."</p>
+                </div>
+                <div class="review-author">
+                    <div class="author-avatar">M</div>
+                    <div class="author-info">
+                        <h4>Marco R.</h4>
+                        <p>Player da 6 mesi</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recensione 2 -->
+            <div class="review-card">
+                <div>
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Design del sito e pulizia nei dettagli al top. Lo scroll fluido e l'ottimizzazione grafica sono eccezionali."</p>
+                </div>
+                <div class="review-author">
+                    <div class="author-avatar">A</div>
+                    <div class="author-info">
+                        <h4>Alex V.</h4>
+                        <p>Community Member</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recensione 3 -->
+            <div class="review-card">
+                <div>
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Esperienza di gioco e navigazione web a livelli superiori. Consigliato a tutti i player appassionati."</p>
+                </div>
+                <div class="review-author">
+                    <div class="author-avatar">G</div>
+                    <div class="author-info">
+                        <h4>Gabriele S.</h4>
+                        <p>Streamer & Content Creator</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+
+    <!-- INIZIALIZZAZIONE SMOOTH SCROLL (LENIS 120Hz) -->
+    <script>
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+            wheelMultiplier: 1.0
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+    </script>
 
     <!-- SCRIPT BLOCCO F12 E TASTO DESTRO -->
     <script>
-        // Disabilita tasto destro
         document.addEventListener('contextmenu', event => event.preventDefault());
 
-        // Disabilita F12 e combinazioni di tasti per DevTools
         document.onkeydown = function (e) {
-            // F12
-            if (e.keyCode == 123) {
-                return false;
-            }
-            // Ctrl + Shift + I (Ispeziona)
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
-                return false;
-            }
-            // Ctrl + Shift + J (Console)
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
-                return false;
-            }
-            // Ctrl + U (Sorgente pagina)
-            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
-                return false;
-            }
-            // Ctrl + S (Salva pagina)
-            if (e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) {
-                return false;
-            }
+            if (e.keyCode == 123) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) return false;
         };
     </script>
 </body>
